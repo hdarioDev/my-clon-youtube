@@ -1,23 +1,25 @@
 import React from 'react'
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    Navigate
+} from "react-router-dom";
+import Home from './pages/Home';
+import Search from './pages/Search';
+import Watch from './pages/Watch';
 
 const App = () => {
     return (
-        <div className='container mx-auto'>
-            <h1 className='underline'>Tailwind CSS</h1>
-            <h2>Incorporado con PostCss</h2>
-            <button className="btn btn-blue btn-blue:hover">Botón</button>
-            <div className="my-5 flex flex-wrap -mx-2">
-                <div className="w-full sm:w-1/2 lg:w-1/3 px-2 my-2">
-                    <h2 className="underline">Hello</h2>
-                </div>
-                <div className="w-full sm:w-1/2 lg:w-1/3 px-2 my-2">
-                    <h2>Hello</h2>
-                </div>
-                <div className="w-full sm:w-1/2 lg:w-1/3 px-2 my-2">
-                    <h2>Hello</h2>
-                </div>
-            </div>
-        </div>
+        <BrowserRouter>
+            <Routes >
+
+                <Route path="home" element={<Home />} />
+                <Route path="watch/:id" element={<Watch />} />
+                <Route path="search" element={<Search />} />
+                <Route path="/*" element={<Navigate to="/home" replace />} />
+            </Routes>
+        </BrowserRouter>
     )
 }
 
