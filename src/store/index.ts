@@ -1,6 +1,9 @@
 import { createSlice, configureStore, PayloadAction } from "@reduxjs/toolkit";
 import { InitialState } from "../interfaces/types";
 import { getHomePageVideos } from "./reducers/getHomePageVideos";
+import { getRecommendedVideos } from "./reducers/getRecommendedVideos";
+import { getSearchPageVideos } from "./reducers/getSearchPageVideos";
+import { getVideoDetails } from "./reducers/getVideosDetail";
 // import { getRecommendedVideos } from "./reducers/getHomePageVideos";
 // import { getSearchPageVideos } from "./";
 // import { getVideoDetails } from "./reducers/getVideoDetails";
@@ -34,16 +37,16 @@ const YoutubeSlice = createSlice({
             state.videos = action.payload.parsedData;
             state.nextPageToken = action.payload.nextPageToken;
         });
-        // builder.addCase(getSearchPageVideos.fulfilled, (state, action) => {
-        //   state.videos = action.payload.parsedData;
-        //   state.nextPageToken = action.payload.nextPageToken;
-        // });
-        // builder.addCase(getVideoDetails.fulfilled, (state, action) => {
-        //   state.currentPlaying = action.payload;
-        // });
-        // builder.addCase(getRecommendedVideos.fulfilled, (state, action) => {
-        //   state.recommendedVideos = action.payload.parsedData;
-        // });
+        builder.addCase(getSearchPageVideos.fulfilled, (state, action) => {
+            state.videos = action.payload.parsedData;
+            state.nextPageToken = action.payload.nextPageToken;
+        });
+        builder.addCase(getVideoDetails.fulfilled, (state, action) => {
+            state.currentPlaying = action.payload;
+        });
+        builder.addCase(getRecommendedVideos.fulfilled, (state, action) => {
+            state.recommendedVideos = action.payload.parsedData;
+        });
     },
 });
 
