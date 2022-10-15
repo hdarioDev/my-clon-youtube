@@ -9,7 +9,10 @@ const Home = () => {
     const videos = useAppSelector(state => state.youtubeApp.videos)
     useEffect(() => {
         dispatch(getHomePageVideos(false))
-    }, [dispatch])
+
+
+    }, [])
+    console.log("videos ", videos);
     return (
         <div className="max-h-screen overflow-hidden">
             <div style={{ height: '7.5vh' }}>
@@ -19,6 +22,7 @@ const Home = () => {
             <div className="flex" style={{ height: '92.5vh' }}>
                 <SideBar />
             </div>
+            {JSON.stringify(videos, null, 4)}
         </div>
 
     )

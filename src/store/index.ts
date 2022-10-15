@@ -1,6 +1,9 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit"
-import { InitialState } from "../interfaces/types"
-import { getHomePageVideos } from "./reducers/getHomePageVideos"
+import { createSlice, configureStore, PayloadAction } from "@reduxjs/toolkit";
+import { InitialState } from "../interfaces/types";
+import { getHomePageVideos } from "./reducers/getHomePageVideos";
+// import { getRecommendedVideos } from "./reducers/getHomePageVideos";
+// import { getSearchPageVideos } from "./";
+// import { getVideoDetails } from "./reducers/getVideoDetails";
 
 const initialState: InitialState = {
     videos: [],
@@ -8,21 +11,41 @@ const initialState: InitialState = {
     searchTerm: "",
     searchResults: [],
     nextPageToken: null,
-    recommendedVideos: []
-}
+    recommendedVideos: [],
+};
 
 const YoutubeSlice = createSlice({
     name: "youtubeApp",
     initialState,
-    reducers: {},
+    reducers: {
+        clearVideos: (state) => {
+            state.videos = [];
+            state.nextPageToken = null;
+        },
+        changeSearchTerm: (state, action: PayloadAction<string>) => {
+            state.searchTerm = action.payload;
+        },
+        clearSearchTerm: (state) => {
+            state.searchTerm = "";
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(getHomePageVideos.fulfilled, (state, action) => {
-            console.log("IN CASE state", state);
-            console.log("IN CASE action", action);
-
-        })
-    }
-})
+            state.videos = action.payload.parsedData;
+            state.nextPageToken = action.payload.nextPageToken;
+        });
+        // builder.addCase(getSearchPageVideos.fulfilled, (state, action) => {
+        //   state.videos = action.payload.parsedData;
+        //   state.nextPageToken = action.payload.nextPageToken;
+        // });
+        // builder.addCase(getVideoDetails.fulfilled, (state, action) => {
+        //   state.currentPlaying = action.payload;
+        // });
+        // builder.addCase(getRecommendedVideos.fulfilled, (state, action) => {
+        //   state.recommendedVideos = action.payload.parsedData;
+        // });
+    },
+});
 
 export const store = configureStore({
     reducer: {
@@ -30,5 +53,8 @@ export const store = configureStore({
     },
 });
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export const { clearVideos, changeSearchTerm, clearSearchTerm } =
+    YoutubeSlice.actions;
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
