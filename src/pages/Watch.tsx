@@ -52,7 +52,7 @@ const Watch = () => {
                         <Navbar isDesktop={width > breakpoint} />
                     </div>
                     {/* <div className="flex w-full " > */}
-                    <div style={{ height: "92.5vh" }} className="flex bg-slate-600  gap-y-10 gap-x-5 lg:p-7 lg:mx-20 lg:mr-0 w-full overflow-auto">
+                    <div style={{ height: "92.5vh" }} className="flex gap-y-10 gap-x-5 lg:p-7 lg:mx-20 lg:mr-0 w-full overflow-auto">
                         <div style={{ maxWidth: `${width > breakpoint}` ? "800px" : "100vh" }}>
                             <div>
                                 <iframe
