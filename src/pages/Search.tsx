@@ -15,6 +15,13 @@ const Search = () => {
     const dispatch = useAppDispatch();
     const videos = useAppSelector((state) => state.youtubeApp.videos);
     const searchTerm = useAppSelector((state) => state.youtubeApp.searchTerm);
+    const [width, setWidth] = React.useState(window.innerWidth);
+    const breakpoint = 620;
+    useEffect(() => {
+        window.addEventListener("resize", () => setWidth(window.innerWidth));
+
+    }, []);
+
 
     useEffect(() => {
         dispatch(clearVideos());
@@ -27,7 +34,7 @@ const Search = () => {
     return (
         <div className="max-h-screen overflow-hidden">
             <div style={{ height: "7.5vh" }}>
-                <Navbar />
+                <Navbar isDesktop={width > breakpoint} />
             </div>
             <div className="flex" style={{ height: "92.5vh" }}>
                 <SideBar />

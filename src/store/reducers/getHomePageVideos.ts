@@ -16,10 +16,9 @@ export const getHomePageVideos = createAsyncThunk(
         const {
             data: { items, nextPageToken },
         } = await axios.get(
-            `${YOUTUBE_API_URL}/search?maxResults=20&q="reactjs projects"&key=${API_KEY}&part=snippet&type=video&${isNext ? `pageToken=${nextPageTokenFromState}` : ""
+            `${YOUTUBE_API_URL}/search?maxResults=20&q="software"&key=${API_KEY}&part=snippet&type=video&${isNext ? `pageToken=${nextPageTokenFromState}` : ""
             }`
         );
-        console.log({ items, nextPageTokenFromState, nextPageToken });
         const parsedData: HomePageVideos[] = await parseData(items);
         return { parsedData: [...videos, ...parsedData], nextPageToken };
     }

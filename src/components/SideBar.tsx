@@ -19,6 +19,7 @@ import { FaRegCompass } from "react-icons/fa";
 import { GiFilmStrip } from "react-icons/gi";
 
 export const SideBar = () => {
+
     const mainLinks = [
         {
             icon: <MdHomeFilled className="text-xl" />,
@@ -119,7 +120,8 @@ export const SideBar = () => {
     ];
 
     return (
-        <div className="w-2/12 bg-[#212121] pr-5 overflow-auto pb-8 sidebar">
+
+        <div className="w-2/12 bg-[#212121] pr-5 overflow-auto pb-8 sidebar ">
             <ul className="flex flex-col border-b-2 border-gray-700">
                 {mainLinks.map(({ icon, name }) => {
                     return (

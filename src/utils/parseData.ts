@@ -28,7 +28,6 @@ export const parseData = async (items: any[]) => {
                 ","
             )}&key=${API_KEY}`
         );
-        console.log("channelsData ", channelsData);
 
         const parsedChannelsData: { id: string; image: string }[] = [];
         channelsData.forEach(
