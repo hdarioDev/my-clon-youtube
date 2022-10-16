@@ -1,5 +1,5 @@
 
-# App clon Netflix
+# App clon youtube
 
 React app with Webpack, TypeScript, tailwind.
 
